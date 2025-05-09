@@ -17,3 +17,26 @@ function dfs(node, results, path) {
     dfs(node.right, results, path);
     path.pop();
 }
+
+// Ternary is similar
+function dfs(node, results, path) {
+        if(!node.children.length) {
+            path.push(node.val);
+            results.push(path.join('->'));
+            path.pop();
+            return;
+        }
+        path.push(node.val);
+        for (const n of node.children) {
+            if(n) {
+                dfs(n, results, path);
+            }
+        };
+        path.pop();
+    }
+
+function ternaryTreePaths(root) {
+    const results = [];
+    dfs(root, results, []);
+    return results;
+}
