@@ -1,0 +1,22 @@
+function isAlphaNumeric(char) {
+  if (typeof char !== 'string' || char.length !== 1) {
+    return false;
+  }
+  const code = char.charCodeAt(0);
+  return (code >= 48 && code <= 57) || // Numbers 0-9
+         (code >= 65 && code <= 90) || // Uppercase letters A-Z
+         (code >= 97 && code <= 122); // Lowercase letters a-z
+}
+
+function isPalindrome(s: string): boolean {
+    let l = 0;
+    let r = s.length - 1;
+    while(l < r) {
+        while(!isAlphaNumeric(s[l]) && l < r) l++;
+        while(!isAlphaNumeric(s[r]) && l < r) r--;
+        if(s[l].toLowerCase() !== s[r].toLowerCase()) return false;
+        l++;
+        r--;
+    }
+    return true;
+};
