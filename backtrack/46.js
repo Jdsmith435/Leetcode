@@ -4,6 +4,7 @@
 *  This was weird because we want distinct numbers in the results.
 * This forced me to add like 1000 params in the signature
 */
+
 // My impl
 function permute(nums: number[]): number[][] {
     const results = [];
@@ -24,7 +25,7 @@ function dfs(index, results, path, nums, n){
     }
 }
 
-// Faster impl
+// Faster impl. Not much changed but this is 100% faster
 function permute(nums: number[]): number[][] {
     const backtrack = (curr) => {
         if (curr.length === nums.length) {
