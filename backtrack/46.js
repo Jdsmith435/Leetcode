@@ -47,3 +47,28 @@ function permute(nums: number[]): number[][] {
     backtrack([]);
     return ans;
 };
+
+// algomonster has a similar approach. But used a 'visited' array.
+// Note: this used an array as the return type.
+function permute(nums: number[]): number[][] {
+    const results = [];
+    const used = [];
+    function dfs(path) {
+        if(path.length === nums.length) {
+            results.push([...path]);
+            return;
+        }
+
+        for(let i = 0; i < nums.length; i++) {
+            if(used[i] !== 1) {
+                used[i] = 1;
+                path.push(nums[i]);
+                dfs(path);
+                path.pop();
+                used[i] = 0;
+            }
+        }
+    }
+    dfs([]);
+    return results;
+};
