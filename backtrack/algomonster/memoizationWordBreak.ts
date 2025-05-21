@@ -24,3 +24,26 @@ function wordBreak(s: string, wordDict: string[]): boolean {
 
     return dfs(0);
 };
+
+// Decode Message example. 
+function numDecodings(s: string): number {
+    const memo = {};
+
+    function dfs(i) {
+        if(i === s.length) return 1;
+        if(i in memo) return memo[i];
+
+        let w = 0;
+        if(s[i] === '0') return w;
+        // single digit string
+        w += dfs(i+1);
+        // two digit string
+        if(i + 2 <= s.length && s.substring(i, i + 2) <= '26') {
+            w += dfs(i+2);
+        }
+        memo[i] = w;
+        return w;
+    }
+
+    return dfs(0);
+};
