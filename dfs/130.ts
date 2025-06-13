@@ -36,7 +36,7 @@ function solve(board: string[][]): void {
     }
 };
 
-// The right impl is to iterate on the boarder and mark those as safe. Then change all the
+// The right impl is to iterate on the border and mark those as safe. Then change all the
 // other O to X
 function solve(board: string[][]): void {
     const m = board.length;
@@ -69,3 +69,19 @@ function solve(board: string[][]): void {
         }
     }
 }
+
+
+// Tried it again with the node first dfs pattern and it works 
+function findSafe(sr,sc) {
+        if(sr < 0 || sr >= height || sc < 0 || sc >= width) return;
+        if(visited[sr][sc]) return;
+        if(board[sr][sc] === 'X') return;
+        visited[sr][sc] = 1;
+        board[sr][sc] = '%';
+        for( const [dr, dc] of directions) {
+            const nr = dr + sr, nc = dc + sc;
+            findSafe(nr,nc);
+        }
+
+
+    }
